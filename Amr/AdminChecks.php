@@ -2,8 +2,8 @@
 session_start();
 
 // Database connection
-$DBName = "project";
-$host = "localhost";
+$DBName = "cafeteria";
+$host = "localhost:3307";
 $DBtype = "mysql";
 $userName = "root";
 $userPassword = "";
@@ -116,8 +116,7 @@ function getUserOrders($userId, $dateFrom = null, $dateTo = null) {
 function getOrderItems($orderId) {
     $connection = getConnection();
     $sql = "SELECT p.name, p.price, oi.quantity, p.image, 
-            (p.price * oi.quantity) as item_total,
-            oi.notes
+            (p.price * oi.quantity) as item_total
             FROM order_items oi
             JOIN products p ON oi.product_id = p.id
             WHERE oi.order_id = :orderId";
@@ -144,7 +143,7 @@ function getUserDetails($userId) {
 // Function to get order details
 function getOrderDetails($orderId) {
     $connection = getConnection();
-    $sql = "SELECT o.id, o.created_at, o.total_price, o.status, r.name as room_name, 
+    $sql = "SELECT o.id, o.created_at, o.total_price, o.status, r.room_number as room_name, 
             u.username as user
             FROM orders o
             JOIN users u ON o.user_id = u.id
@@ -292,19 +291,32 @@ if ($selectedOrderId) {
             color: #6c757d;
             margin-top: 5px;
         }
+        body {
+    display: flex;
+    flex-direction: column;
+ 
+}
+
+.container {
+    flex: 1 0 auto;
+    margin-top: 100px;
+}
+
+footer {
+    flex-shrink: 0;
+    margin-top: auto !important;
+    margin-bottom: 0 !important;
+}
     </style>
 </head>
 <body>
-<div class="container mt-3">
+<?php 
+include("../nav_footer/header.php")
+?>
+<div class="container" style="margin-top:100px;">
     <!-- Navigation -->
-    <div class="nav-links mb-3">
-        <a href="index.php"><i class="fas fa-home"></i> Home</a>
-        <a href="products.php"><i class="fas fa-coffee"></i> Products</a>
-        <a href="users.php"><i class="fas fa-users"></i> Users</a>
-        <a href="AdminOrders.php"><i class="fas fa-shopping-cart"></i> Manual Order</a>
-        <a href="AdminChecks.php" class="active"><i class="fas fa-receipt"></i> Checks</a>
-        <span class="float-end"><i class="fas fa-user-shield"></i> Admin</span>
-    </div>
+     
+
 
     <h2><i class="fas fa-receipt"></i> Checks</h2>
     
@@ -595,5 +607,8 @@ if ($selectedOrderId) {
         }
     </script>
 </div>
+<?php 
+include("../nav_footer/footer.php")
+?>
 </body>
 </html>

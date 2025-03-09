@@ -2,8 +2,8 @@
 session_start();
 
 // Database connection
-$DBName = "project";
-$host = "localhost";
+$DBName = "cafeteria";
+$host = "localhost:3307";
 $DBtype = "mysql";
 $userName = "root";
 $userPassword = "";
@@ -90,7 +90,7 @@ function getAllUsers() {
 function getOrderDetails($orderId) {
     $connection = getConnection();
     $sql = "SELECT o.id, o.created_at as date, u.username as name, r.room_number as room, 
-           o.total_price, o.status, u.email, u.phone
+           o.total_price, o.status, u.email
            FROM orders o
            JOIN users u ON o.user_id = u.id
            JOIN rooms r ON o.room_id = r.id
@@ -207,19 +207,35 @@ $activeOrders = getActiveOrders($filteredUserId);
         .status-done {
             background-color: #d1e7dd;
         }
+        html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.container {
+    flex: 1 0 auto;
+    margin-top: 100px;
+}
+
+footer {
+    flex-shrink: 0;
+    margin-top: auto !important;
+    margin-bottom: 0 !important;
+}
     </style>
 </head>
 <body>
 <div class="container mt-3">
     <!-- Navigation -->
-    <div class="nav-links mb-3">
-    <a href="index.php"><i class="fas fa-home"></i> Home</a>
-        <a href="products.php"><i class="fas fa-coffee"></i> Products</a>
-        <a href="users.php"><i class="fas fa-users"></i> Users</a>
-        <a href="AdminOrders.php"><i class="fas fa-shopping-cart"></i> Manual Order</a>
-        <a href="AdminChecks.php" class="active"><i class="fas fa-receipt"></i> Checks</a>
-        <span class="float-end"><i class="fas fa-user-shield"></i> Admin</span>
-    </div>
+    <?php 
+include("../nav_footer/header.php")
+?>
 
     <div class="row mb-4">
         <div class="col-md-8">
@@ -380,7 +396,9 @@ $activeOrders = getActiveOrders($filteredUserId);
         <?php } ?>
     <?php } ?>
 </div>
-
+<?php 
+include("../nav_footer/footer.php")
+?>
 <script>
     // Prevent order container from redirecting when clicking on forms
     document.addEventListener('DOMContentLoaded', function() {
