@@ -1,0 +1,8 @@
+2025-03-03T21:03:50.086386Z 0 [Warning] [MY-010097] [Server] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2025-03-03T21:03:50.086938Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2025-03-03T21:03:50.087240Z 0 [System] [MY-010116] [Server] E:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld (mysqld 8.0.30) starting as process 1056
+2025-03-03T21:03:50.346904Z 0 [Warning] [MY-010075] [Server] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: 019844d8-f873-11ef-bf76-e454e809ae58.
+2025-03-03T21:03:50.441873Z 1 [ERROR] [MY-011011] [Server] Failed to find valid data directory.
+2025-03-03T21:03:50.448347Z 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2025-03-03T21:03:50.452812Z 0 [ERROR] [MY-010119] [Server] Aborting
+2025-03-03T21:03:50.478934Z 0 [System] [MY-010910] [Server] E:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld: Shutdown complete (mysqld 8.0.30)  MySQL Community Server - GPL.
